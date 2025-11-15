@@ -8,12 +8,12 @@
 # except according to those terms.
 
 import os
+import shutil
 import subprocess
 import tempfile
-from typing import Optional
 import urllib.parse
 import zipfile
-import shutil
+from typing import Optional
 
 from servo import util
 
@@ -99,7 +99,7 @@ class Windows(Base):
         else:
             print("done")
 
-    def _platform_bootstrap(self, force: bool) -> bool:
+    def _platform_bootstrap(self, force: bool, yes: bool) -> bool:
         installed_something = self.passive_bootstrap()
         # If `winget` works well in practice, we could switch the default in the future.
         if shutil.which("choco") is not None:
@@ -108,7 +108,7 @@ class Windows(Base):
             _winget_import()
 
         target = BuildTarget.from_triple(None)
-        installed_something |= self._platform_bootstrap_gstreamer(target, force)
+        installed_something |= self._platform_bootstrap_gstreamer(target, force, yes)
         return installed_something
 
     def passive_bootstrap(self) -> bool:
@@ -163,7 +163,7 @@ class Windows(Base):
     def is_gstreamer_installed(self, target: BuildTarget) -> bool:
         return self.gstreamer_root(target) is not None
 
-    def _platform_bootstrap_gstreamer(self, target: BuildTarget, force: bool) -> bool:
+    def _platform_bootstrap_gstreamer(self, target: BuildTarget, force: bool, yes: bool) -> bool:
         if not force and self.is_gstreamer_installed(target):
             return False
 
