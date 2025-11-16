@@ -10,7 +10,7 @@
 import os
 import subprocess
 import tempfile
-from typing import Any, Optional
+from typing import Optional, Any
 
 from .. import util
 from .base import Base

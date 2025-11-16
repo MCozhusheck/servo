@@ -7,12 +7,11 @@
 # option. This file may not be copied, modified, or distributed
 # except according to those terms.
 
-import os
-import shutil
-import subprocess
-from typing import Any, Optional
-
 import distro
+import os
+import subprocess
+import shutil
+from typing import Optional, Any
 
 from .base import Base
 from .build_target import BuildTarget

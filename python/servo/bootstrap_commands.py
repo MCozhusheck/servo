@@ -21,13 +21,15 @@ import traceback
 import urllib.error
 
 import toml
+
 from mach.decorators import (
-    Command,
     CommandArgument,
     CommandProvider,
+    Command,
 )
 
 import servo.platform
+
 from servo.command_base import CommandBase, cd, check_call
 from servo.util import delete, download_bytes
 

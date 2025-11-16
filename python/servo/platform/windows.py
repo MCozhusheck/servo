@@ -8,12 +8,12 @@
 # except according to those terms.
 
 import os
-import shutil
 import subprocess
 import tempfile
+from typing import Optional
 import urllib.parse
 import zipfile
-from typing import Optional
+import shutil
 
 from servo import util
 
